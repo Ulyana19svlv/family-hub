@@ -318,6 +318,10 @@ h1 {
   padding: 22px;
 }
 
+.details-panel.hidden {
+  display: none;
+}
+
 .details-top {
   display: flex;
   align-items: center;

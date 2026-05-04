@@ -3,6 +3,7 @@ const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
 const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
 const state = {
   category: "все",
+  detailsHidden: false,
   search: "",
   selectedId: places[0].id,
   map: null,
@@ -67,6 +68,7 @@ function renderList() {
 function renderDetails() {
   const place = places.find((item) => item.id === state.selectedId) || filteredPlaces()[0] || places[0];
   if (!place) return;
+  elements.detailsPanel.classList.toggle("hidden", state.detailsHidden);
 
   const links = [
     place.links.site && ["Сайт", "globe", place.links.site],
@@ -99,6 +101,7 @@ function renderDetails() {
 
 function selectPlace(id, focusMap = true) {
   state.selectedId = id;
+  state.detailsHidden = false;
   const place = places.find((item) => item.id === id);
   renderList();
   renderDetails();
@@ -195,6 +198,12 @@ elements.categoryStrip.addEventListener("click", (event) => {
 elements.placeList.addEventListener("click", (event) => {
   const row = event.target.closest("[data-id]");
   if (row) selectPlace(row.dataset.id);
+});
+
+elements.detailsPanel.addEventListener("click", (event) => {
+  if (!event.target.closest("#closeDetailsButton")) return;
+  state.detailsHidden = true;
+  elements.detailsPanel.classList.add("hidden");
 });
 
 elements.searchInput.addEventListener("input", (event) => {
