@@ -24,6 +24,22 @@ const elements = {
   searchInput: document.querySelector("#searchInput")
 };
 
+const categoryMeta = {
+  "рестораны и кафе": { icon: "utensils", accent: "tomato" },
+  "музеи и выставки": { icon: "sparkles", accent: "cobalt" },
+  "парки и прогулки": { icon: "trees", accent: "lime" },
+  "спорт и активность": { icon: "activity", accent: "blue" },
+  "мастер-классы": { icon: "palette", accent: "violet" },
+  "пространства": { icon: "gem", accent: "pink" },
+  "спа и красота": { icon: "flower", accent: "peach" },
+  "события": { icon: "ticket", accent: "amber" },
+  "все": { icon: "layout-grid", accent: "ink" }
+};
+
+function getCategoryMeta(category) {
+  return categoryMeta[category] || { icon: "map-pin", accent: "ink" };
+}
+
 function createIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
@@ -47,7 +63,12 @@ function filteredPlaces() {
 function renderCategories() {
   elements.categoryStrip.innerHTML = categories.map((category) => {
     const active = category === state.category ? "active" : "";
-    return `<button class="category-chip ${active}" data-category="${category}">${category}</button>`;
+    const meta = getCategoryMeta(category);
+    return `
+      <button class="category-chip ${active}" data-category="${category}" data-accent="${meta.accent}">
+        <i data-lucide="${meta.icon}"></i>${category}
+      </button>
+    `;
   }).join("");
 }
 
@@ -56,19 +77,32 @@ function renderList() {
   elements.countLabel.textContent = `${visible.length} мест`;
   elements.placeList.innerHTML = visible.map((place) => {
     const active = place.id === state.selectedId ? "active" : "";
+    const meta = getCategoryMeta(place.category);
+    const social = [
+      place.links.instagram && "Instagram",
+      place.links.telegram && "Telegram",
+      place.links.site && "сайт"
+    ].filter(Boolean).slice(0, 2).join(" · ");
     return `
-      <button class="place-row ${active}" data-id="${place.id}">
+      <button class="place-row ${active}" data-id="${place.id}" data-accent="${meta.accent}">
+        <span class="row-kicker"><i data-lucide="${meta.icon}"></i>${place.category}</span>
         <span class="row-title">${place.title}</span>
-        <span class="row-meta">${place.category}</span>
+        <span class="row-description">${place.description}</span>
+        <span class="row-footer">
+          <span>${place.tags.slice(0, 2).join(" / ")}</span>
+          <span>${social || "план"}</span>
+        </span>
       </button>
     `;
   }).join("");
+  createIcons();
 }
 
 function renderDetails() {
   const place = places.find((item) => item.id === state.selectedId) || filteredPlaces()[0] || places[0];
   if (!place) return;
   elements.detailsPanel.classList.toggle("hidden", state.detailsHidden);
+  const meta = getCategoryMeta(place.category);
 
   const links = [
     place.links.site && ["Сайт", "globe", place.links.site],
@@ -78,16 +112,43 @@ function renderDetails() {
   ].filter(Boolean);
 
   elements.detailsPanel.innerHTML = `
+    <div class="details-art" data-accent="${meta.accent}"></div>
     <div class="details-top">
-      <span class="details-category">${place.category}</span>
+      <span class="details-category"><i data-lucide="${meta.icon}"></i>${place.category}</span>
       <button class="icon-button compact" id="closeDetailsButton" title="Свернуть" aria-label="Свернуть">
         <i data-lucide="panel-right-close"></i>
       </button>
     </div>
     <h2>${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
-    <p>${place.description}</p>
+    <p class="details-lead">${place.description}</p>
     <div class="tag-cloud">${place.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+    <div class="visit-plan">
+      <section>
+        <span>Почему сюда</span>
+        <p>${place.description}</p>
+      </section>
+      <section>
+        <span>Что сделать</span>
+        <p>Открыть соцсети или сайт, проверить актуальный формат и добавить конкретный план визита.</p>
+      </section>
+      <section>
+        <span>Когда идти</span>
+        <p>${place.tags.includes("лето") ? "Летом или в теплый выходной." : "В свободный вечер или на выходных."}</p>
+      </section>
+      <section>
+        <span>С кем идти</span>
+        <p>${place.tags.includes("с детьми") ? "С детьми или семьей." : place.tags.includes("pet-friendly") ? "Одной, с подругой или с питомцем." : "Одной, с подругой или небольшой компанией."}</p>
+      </section>
+      <section>
+        <span>Сколько времени</span>
+        <p>Заложить 1-2 часа, а для загородных мест - половину дня.</p>
+      </section>
+      <section>
+        <span>Проверить перед визитом</span>
+        <p>Расписание, бронь, билеты, адрес и актуальные сторис/посты места.</p>
+      </section>
+    </div>
     <div class="link-row">
       ${links.map(([label, icon, url]) => `
         <a href="${url}" target="_blank" rel="noreferrer">
