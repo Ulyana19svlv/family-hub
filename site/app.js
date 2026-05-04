@@ -241,8 +241,8 @@ elements.saveMapKeyButton.addEventListener("click", () => {
 
 renderAll();
 const storedKey = localStorage.getItem("secretMoscowYandexKey");
-if (storedKey || DEFAULT_YANDEX_MAPS_KEY) {
-  initMap(storedKey || DEFAULT_YANDEX_MAPS_KEY);
+if (DEFAULT_YANDEX_MAPS_KEY || storedKey) {
+  initMap(DEFAULT_YANDEX_MAPS_KEY || storedKey);
 } else {
   elements.mapKeyPanel.classList.remove("hidden");
 }
