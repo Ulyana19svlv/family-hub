@@ -1,4 +1,5 @@
 const places = window.SECRET_MOSCOW_PLACES;
+const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
 const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
 const state = {
   category: "все",
@@ -225,8 +226,8 @@ elements.saveMapKeyButton.addEventListener("click", () => {
 
 renderAll();
 const storedKey = localStorage.getItem("secretMoscowYandexKey");
-if (storedKey) {
-  initMap(storedKey);
+if (storedKey || DEFAULT_YANDEX_MAPS_KEY) {
+  initMap(storedKey || DEFAULT_YANDEX_MAPS_KEY);
 } else {
   elements.mapKeyPanel.classList.remove("hidden");
 }
