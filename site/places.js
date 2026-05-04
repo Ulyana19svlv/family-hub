@@ -16,7 +16,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Петровка, 23/10с5, Москва",
     coords: [55.7658, 37.6189],
     description: "Ресторан-кантина на Петровке с театральной пустынной атмосферой и кавказской кухней.",
-    links: { site: "https://tatooine.rest/" },
+    links: { instagram: "https://www.instagram.com/tatooine.rest/", site: "https://tatooine.rest/" },
     tags: ["ужин", "атмосферно", "центр"]
   },
   {
@@ -26,7 +26,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Берсеневский переулок, 3/10с8, Москва",
     coords: [55.7418, 37.6106],
     description: "Рыбный ресторан у Красного Октября для ужина с видом на центральную Москву.",
-    links: { site: "https://magadanmsk.ru/" },
+    links: { instagram: "https://www.instagram.com/magadan.official/", site: "https://magadanmsk.ru/" },
     tags: ["рыба", "ужин", "вид"]
   },
   {
@@ -36,7 +36,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Москва, адрес уточнить",
     coords: [55.7558, 37.6176],
     description: "Пространство для телесных практик и мероприятий. Адрес лучше перепроверить перед публикацией.",
-    links: { site: "https://mestobe.ru/" },
+    links: { telegram: "https://t.me/mestobe_space", site: "https://mestobe.ru/" },
     tags: ["практики", "релакс", "уточнить"]
   },
   {
@@ -56,7 +56,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Корабельная улица, 9А, Москва",
     coords: [55.6832, 37.6846],
     description: "Семейное кафе в Ривер Парке, хорошо для спокойного завтрака или встречи с детьми.",
-    links: {},
+    links: { instagram: "https://www.instagram.com/annavarenina_cafe/" },
     tags: ["семейно", "кафе", "завтрак"]
   },
   {
@@ -66,7 +66,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Большая Никитская, 17с1, Москва",
     coords: [55.7566, 37.6013],
     description: "Кулинарное пространство в центре: еда, встречи и камерный городской вайб.",
-    links: { site: "https://edomo.moscow/" },
+    links: { instagram: "https://www.instagram.com/edomoconcept/", site: "https://edomo.moscow/" },
     tags: ["центр", "еда", "камерно"]
   },
   {
@@ -96,7 +96,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "КТК Galaxy, Москва",
     coords: [55.7636, 37.5592],
     description: "Парфюмерный бутик-бар для знакомства с ароматами и мини-версиями парфюма.",
-    links: { site: "https://parfutique.ru/" },
+    links: { telegram: "https://t.me/parfobar_03", site: "https://parfutique.ru/" },
     tags: ["ароматы", "подарки", "уточнить"]
   },
   {
@@ -116,7 +116,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Краснобогатырская улица, 90с22, Москва",
     coords: [55.8042, 37.7045],
     description: "Швейная школа и коворкинг для курсов, консультаций и творческих мастер-классов.",
-    links: { site: "https://cosew.ru/" },
+    links: { instagram: "https://www.instagram.com/cosew.ru/", site: "https://cosew.ru/" },
     tags: ["шитье", "руками", "курс"]
   },
   {
@@ -146,7 +146,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Новый Арбат, 17, Москва",
     coords: [55.7527, 37.5904],
     description: "Мультимедийное арт-пространство с иммерсивными залами и яркими инсталляциями.",
-    links: { site: "https://эйфория.москва/" },
+    links: { instagram: "https://www.instagram.com/euphoria_msk_/", site: "https://эйфория.москва/" },
     tags: ["инсталляции", "фото", "вечер"]
   },
   {
@@ -156,7 +156,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "бульвар Братьев Весниных, 3, Москва",
     coords: [55.7031, 37.6451],
     description: "Музейно-выставочный центр в квартале ЗИЛАРТ с частной коллекцией искусства.",
-    links: { site: "https://zilartmuseum.ru/" },
+    links: { instagram: "https://www.instagram.com/zilartmuseum.friends/", site: "https://zilartmuseum.ru/" },
     tags: ["музей", "современное искусство", "зил"]
   },
   {
@@ -186,7 +186,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Долгоруковская улица, 15к2, Москва",
     coords: [55.7802, 37.6044],
     description: "Студия рисования и арт-вечеринок для творческого вечера без академической строгости.",
-    links: { site: "https://palitrachuvstv.ru/" },
+    links: { instagram: "https://www.instagram.com/palitra.chuvstv/", site: "https://palitrachuvstv.ru/" },
     tags: ["рисование", "вечеринка", "творчество"]
   },
   {
@@ -226,7 +226,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "2-й Хвостов переулок, 8, Москва",
     coords: [55.7246, 37.6192],
     description: "Творческая мастерская-кофейня с занятиями, керамикой, тканью и уютной едой.",
-    links: { site: "https://фьють.рф/" },
+    links: { instagram: "https://www.instagram.com/fyut2025/", site: "https://фьють.рф/" },
     tags: ["мастерская", "кофейня", "творчество"]
   },
   {
@@ -236,7 +236,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Складочная улица, 1с6, Москва",
     coords: [55.7992, 37.5912],
     description: "Пространство с видом на падел-корты: завтрак, кофе и спортивная атмосфера.",
-    links: {},
+    links: { instagram: "https://www.instagram.com/zheltki_moscow/" },
     tags: ["завтрак", "падел", "спорт"]
   },
   {
@@ -246,7 +246,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Мясницкая улица, 22с1, офис 105, Москва",
     coords: [55.7657, 37.6374],
     description: "Pet-friendly студия автопортрета на Чистых прудах, где можно снять себя без фотографа.",
-    links: { telegram: "https://t.me/ayphotoatelier" },
+    links: { instagram: "https://www.instagram.com/ay.photoatelier/", telegram: "https://t.me/ayphotoatelier" },
     tags: ["фото", "pet-friendly", "центр"]
   },
   {
@@ -296,7 +296,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "ТРЦ «Европейский», площадь Киевского Вокзала, 2, 4 этаж, Москва",
     coords: [55.7446, 37.5668],
     description: "Музей фантастических существ и криптозоологии на 4 этаже ТРЦ «Европейский».",
-    links: {},
+    links: { instagram: "https://www.instagram.com/bestiary_moscow/" },
     tags: ["музей", "фэнтези", "с детьми"]
   }
 ];
