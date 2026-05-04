@@ -207,7 +207,7 @@ h1 {
   display: grid;
   gap: 5px;
   width: 100%;
-  min-height: 68px;
+  min-height: 86px;
   padding: 13px 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -220,15 +220,18 @@ h1 {
 .place-row.active {
   border-color: var(--green);
   box-shadow: inset 4px 0 0 var(--green);
+  padding-left: 18px;
 }
 
 .row-title {
   font-weight: 800;
+  line-height: 1.22;
 }
 
 .row-meta {
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.35;
 }
 
 .map-area {
