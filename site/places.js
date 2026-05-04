@@ -1214,6 +1214,46 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "accent-jewelry-workshop",
+    "title": "Accent. Ювелирные мастер-классы",
+    "category": "мастер-классы",
+    "address": "м. Римская, Москва",
+    "coords": [
+      55.7472,
+      37.6816
+    ],
+    "description": "Ювелирные мастер-классы у Римской: групповые и индивидуальные занятия, где можно сделать украшение своими руками.",
+    "links": {
+      "instagram": "https://www.instagram.com/accent_mk/",
+      "site": "https://n2111970.yclients.com/"
+    },
+    "tags": [
+      "ювелирка",
+      "кольца",
+      "мастер-класс"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 8.4,
+        "minutes": 30,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Римская",
+          "distanceKm": 0.1
+        },
+        {
+          "name": "Площадь Ильича",
+          "distanceKm": 0.2
+        },
+        {
+          "name": "Марксистская",
+          "distanceKm": 1.5
+        }
+      ]
+    }
   }
 ];
-
