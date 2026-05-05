@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wireframe: Secret Moscow Map First</title>
+    <style>
+      :root {
+        --bg: #fff8ec;
+        --surface: #fffdf7;
+        --text: #151718;
+        --muted: #67645d;
+        --border: #202020;
+        --primary: #0f6b52;
+        --accent: #ff4f7b;
+        --support: #d9ff48;
+        --info: #156cff;
+        --shadow: 8px 8px 0 rgba(21, 23, 24, 0.16);
+        --display: "Arial Black", system-ui, sans-serif;
+        --body: "Segoe UI", Arial, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+      }
+
+      .frame {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        padding: 24px;
+        background:
+          linear-gradient(90deg, rgba(21, 23, 24, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+          linear-gradient(0deg, rgba(21, 23, 24, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+          #dfe8dc;
+      }
+
+      .map-label {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: rgba(21, 23, 24, 0.18);
+        font: 800 68px/1 var(--display);
+        text-transform: uppercase;
+      }
+
+      .floating-header {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: auto minmax(220px, 1fr) auto auto auto;
+        gap: 12px;
+        align-items: center;
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        padding: 12px;
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        background: rgba(255, 253, 247, 0.94);
+        box-shadow: var(--shadow);
+      }
+
+      .logo {
+        font: 800 18px/1 var(--display);
+      }
+
+      .search {
+        min-height: 46px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        padding: 0 14px;
+        background: #fff;
+        color: var(--muted);
+      }
+
+      .chip,
+      .icon {
+        min-height: 46px;
+        border: 2px solid var(--border);
+        border-radius: 999px;
+        background: #fff;
+        font-weight: 800;
+      }
+
+      .chip {
+        padding: 0 16px;
+      }
+
+      .icon {
+        width: 46px;
+      }
+
+      .card-rail {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+        z-index: 2;
+        display: flex;
+        gap: 14px;
+        overflow: hidden;
+        padding: 4px 4px 14px;
+      }
+
+      .place-card {
+        flex: 0 0 250px;
+        min-height: 156px;
+        padding: 16px;
+        border: 2px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: 5px 5px 0 rgba(21, 23, 24, 0.16);
+      }
+
+      .place-card::before {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 8px;
+        margin-bottom: 12px;
+        border-radius: 999px;
+        background: var(--info);
+      }
+
+      .place-card.active {
+        background: #f4ffdf;
+      }
+
+      .place-card h3 {
+        margin: 0 0 10px;
+        font: 800 20px/1.05 var(--display);
+      }
+
+      .place-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .drawer {
+        position: absolute;
+        right: 24px;
+        top: 96px;
+        z-index: 3;
+        width: 380px;
+        padding: 20px;
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        background: rgba(255, 253, 247, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .drawer .accent {
+        height: 10px;
+        margin: -20px -20px 18px;
+        border-bottom: 2px solid var(--border);
+        border-radius: 14px 14px 0 0;
+        background: var(--support);
+      }
+
+      .drawer h2 {
+        margin: 0 0 10px;
+        font: 800 30px/1.04 var(--display);
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 16px 0;
+      }
+
+      .meta {
+        min-height: 86px;
+        padding: 12px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        background: #fff;
+        font-weight: 800;
+      }
+
+      .links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .links span {
+        min-height: 40px;
+        padding: 8px 12px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      @media (max-width: 760px) {
+        .frame {
+          padding: 14px;
+          min-height: 100svh;
+        }
+
+        .floating-header {
+          grid-template-columns: 1fr auto auto;
+        }
+
+        .search {
+          grid-column: 1 / -1;
+          order: 2;
+        }
+
+        .chip {
+          display: none;
+        }
+
+        .drawer {
+          left: 10px;
+          right: 10px;
+          top: auto;
+          bottom: 96px;
+          width: auto;
+        }
+
+        .card-rail {
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="frame">
+      <div class="map-label">Yandex Map</div>
+
+      <header class="floating-header">
+        <div class="logo">Секретная Москва</div>
+        <div class="search">Поиск места или района</div>
+        <button class="chip">Фильтр</button>
+        <button class="icon">↻</button>
+        <button class="icon">←</button>
+      </header>
+
+      <aside class="drawer">
+        <div class="accent"></div>
+        <h2>Tatooine</h2>
+        <p>Петровка, 23/10с5, Москва</p>
+        <div class="meta-grid">
+          <div class="meta">~10 мин<br />1.6 км</div>
+          <div class="meta">Метро рядом<br />Трубная</div>
+        </div>
+        <p>Карточка места раскрывается как редакционный drawer поверх карты.</p>
+        <div class="links">
+          <span>Сайт</span>
+          <span>Instagram</span>
+          <span>Яндекс</span>
+        </div>
+      </aside>
+
+      <section class="card-rail" aria-label="Карточки мест">
+        <article class="place-card active">
+          <h3>Tatooine</h3>
+          <p>Рестораны и кафе · центр · ужин</p>
+        </article>
+        <article class="place-card">
+          <h3>Магадан</h3>
+          <p>Рестораны и кафе · вид · рыба</p>
+        </article>
+        <article class="place-card">
+          <h3>Бестиарий</h3>
+          <p>Музеи и выставки · фантазийно</p>
+        </article>
+        <article class="place-card">
+          <h3>Accent</h3>
+          <p>Мастер-классы · ювелирка</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

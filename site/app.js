@@ -3,7 +3,9 @@ const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
 const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
 const state = {
   category: "все",
-  detailsHidden: window.matchMedia("(max-width: 620px)").matches,
+  detailsHidden: true,
+  mobileMapOpen: false,
+  sheetDragStartY: null,
   search: "",
   selectedId: places[0].id,
   map: null,
@@ -17,6 +19,8 @@ const elements = {
   detailsPanel: document.querySelector("#detailsPanel"),
   mapKeyInput: document.querySelector("#mapKeyInput"),
   mapKeyPanel: document.querySelector("#mapKeyPanel"),
+  mapLoading: document.querySelector("#mapLoading"),
+  mobileViewToggle: document.querySelector("#mobileViewToggle"),
   placeList: document.querySelector("#placeList"),
   randomPlaceButton: document.querySelector("#randomPlaceButton"),
   resetButton: document.querySelector("#resetButton"),
@@ -36,6 +40,10 @@ const categoryMeta = {
   "все": { icon: "layout-grid", accent: "ink" }
 };
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function getCategoryMeta(category) {
   return categoryMeta[category] || { icon: "map-pin", accent: "ink" };
 }
@@ -43,6 +51,33 @@ function getCategoryMeta(category) {
 function createIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
+  }
+}
+
+function setMapLoading(isLoading) {
+  elements.mapLoading?.classList.toggle("hidden", !isLoading);
+}
+
+function setMobileMapOpen(isOpen) {
+  state.mobileMapOpen = isOpen;
+  document.body.classList.toggle("mobile-map-open", isOpen);
+  const label = elements.mobileViewToggle?.querySelector("span");
+  const icon = elements.mobileViewToggle?.querySelector("i");
+  if (label) label.textContent = isOpen ? "Список" : "Карта";
+  if (icon) icon.setAttribute("data-lucide", isOpen ? "list" : "map");
+  createIcons();
+  if (isOpen && state.map) {
+    setTimeout(() => state.map.container.fitToViewport(), 80);
+  }
+}
+
+function syncDetailsState() {
+  elements.detailsPanel.classList.toggle("hidden", state.detailsHidden);
+  elements.detailsPanel.setAttribute("aria-hidden", String(state.detailsHidden));
+  if (state.detailsHidden) {
+    elements.detailsPanel.setAttribute("inert", "");
+  } else {
+    elements.detailsPanel.removeAttribute("inert");
   }
 }
 
@@ -68,6 +103,22 @@ function filteredPlaces() {
     const text = `${place.title} ${place.address} ${place.description} ${place.tags.join(" ")}`.toLowerCase();
     return categoryMatch && (!query || text.includes(query));
   });
+}
+
+function reconcileSelection({ hideWhenChanged = true } = {}) {
+  const visible = filteredPlaces();
+  if (!visible.length) {
+    state.selectedId = null;
+    state.detailsHidden = true;
+    return visible;
+  }
+
+  if (!visible.some((place) => place.id === state.selectedId)) {
+    state.selectedId = visible[0].id;
+    if (hideWhenChanged) state.detailsHidden = true;
+  }
+
+  return visible;
 }
 
 function renderCategories() {
@@ -112,10 +163,23 @@ function renderList() {
   createIcons();
 }
 
+function renderListWithTransition() {
+  elements.placeList.classList.add("is-filtering");
+  requestAnimationFrame(() => {
+    renderList();
+    requestAnimationFrame(() => elements.placeList.classList.remove("is-filtering"));
+  });
+}
+
 function renderDetails() {
-  const place = places.find((item) => item.id === state.selectedId) || filteredPlaces()[0] || places[0];
-  if (!place) return;
-  elements.detailsPanel.classList.toggle("hidden", state.detailsHidden);
+  const visible = filteredPlaces();
+  const place = visible.find((item) => item.id === state.selectedId);
+  if (!place) {
+    state.detailsHidden = true;
+    syncDetailsState();
+    elements.detailsPanel.innerHTML = "";
+    return;
+  }
   const meta = getCategoryMeta(place.category);
 
   const links = [
@@ -133,7 +197,7 @@ function renderDetails() {
         <i data-lucide="panel-right-close"></i>
       </button>
     </div>
-    <h2>${place.title}</h2>
+    <h2 id="detailsTitle">${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
     <div class="access-strip">
       <div>
@@ -183,21 +247,42 @@ function renderDetails() {
       `).join("")}
     </div>
   `;
+  elements.detailsPanel.setAttribute("aria-labelledby", "detailsTitle");
+  syncDetailsState();
   createIcons();
 }
 
-function selectPlace(id, focusMap = true) {
+function selectPlace(id, focusMap = true, openDetails = true) {
   state.selectedId = id;
-  state.detailsHidden = false;
+  state.detailsHidden = !openDetails;
   const place = places.find((item) => item.id === id);
   renderList();
   renderDetails();
+  if (openDetails && window.matchMedia("(max-width: 768px)").matches) {
+    setTimeout(() => elements.detailsPanel.querySelector("#closeDetailsButton")?.focus(), 60);
+  }
 
   if (focusMap && state.map && place) {
-    state.map.setCenter(place.coords, 14, { duration: 250 });
+    state.map.setCenter(place.coords, 14, { duration: prefersReducedMotion() ? 0 : 250 });
     const placemark = state.placemarks.get(id);
     if (placemark) placemark.balloon.open();
   }
+}
+
+function scrollToSelectedCard() {
+  const row = elements.placeList.querySelector(`[data-id="${state.selectedId}"]`);
+  if (!row) return;
+  row.scrollIntoView({ block: "nearest", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+}
+
+function restoreFocusAfterDetailsClose() {
+  if (state.mobileMapOpen) {
+    elements.mobileViewToggle?.focus?.({ preventScroll: true });
+    return;
+  }
+  const row = state.selectedId ? elements.placeList.querySelector(`[data-id="${state.selectedId}"]`) : null;
+  const target = row || elements.mobileViewToggle || elements.placeList;
+  target?.focus?.({ preventScroll: true });
 }
 
 function syncMapVisibility() {
@@ -223,16 +308,31 @@ function loadYandexScript(apiKey) {
       return;
     }
 
+    let settled = false;
+    const timeoutId = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      reject(new Error("Yandex Maps loading timeout"));
+    }, 12000);
+
+    const finish = (callback) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeoutId);
+      callback();
+    };
+
     const script = document.createElement("script");
     script.src = `https://api-maps.yandex.ru/2.1/?apikey=${encodeURIComponent(apiKey)}&lang=ru_RU`;
-    script.onload = () => window.ymaps.ready(resolve);
-    script.onerror = reject;
+    script.onload = () => window.ymaps.ready(() => finish(resolve));
+    script.onerror = () => finish(() => reject(new Error("Yandex Maps script failed")));
     document.head.appendChild(script);
   });
 }
 
 function initMap(apiKey) {
   elements.mapKeyPanel.classList.add("hidden");
+  setMapLoading(true);
   loadYandexScript(apiKey).then(() => {
   state.map = new ymaps.Map("map", {
       center: [55.7558, 37.6176],
@@ -265,8 +365,10 @@ function initMap(apiKey) {
 
     state.map.geoObjects.add(state.clusterer);
     syncMapVisibility();
-    selectPlace(state.selectedId, true);
+    selectPlace(state.selectedId, true, false);
+    setMapLoading(false);
   }).catch(() => {
+    setMapLoading(false);
     elements.mapKeyPanel.classList.remove("hidden");
     elements.mapKeyPanel.classList.add("error");
   });
@@ -276,30 +378,49 @@ elements.categoryStrip.addEventListener("click", (event) => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
   state.category = button.dataset.category;
-  const firstVisible = filteredPlaces()[0];
-  if (firstVisible) state.selectedId = firstVisible.id;
-  renderAll();
+  reconcileSelection();
+  renderCategories();
+  renderListWithTransition();
+  renderDetails();
   syncMapVisibility();
 });
 
 elements.placeList.addEventListener("click", (event) => {
   const row = event.target.closest("[data-id]");
-  if (row) selectPlace(row.dataset.id);
+  if (!row) return;
+  selectPlace(row.dataset.id);
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    setMobileMapOpen(true);
+  }
 });
 
 elements.detailsPanel.addEventListener("click", (event) => {
   if (!event.target.closest("#closeDetailsButton")) return;
   state.detailsHidden = true;
-  elements.detailsPanel.classList.add("hidden");
+  restoreFocusAfterDetailsClose();
+  syncDetailsState();
+});
+
+elements.detailsPanel.addEventListener("pointerdown", (event) => {
+  if (!window.matchMedia("(max-width: 768px)").matches) return;
+  state.sheetDragStartY = event.clientY;
+});
+
+elements.detailsPanel.addEventListener("pointerup", (event) => {
+  if (!window.matchMedia("(max-width: 768px)").matches || state.sheetDragStartY === null) return;
+  const deltaY = event.clientY - state.sheetDragStartY;
+  state.sheetDragStartY = null;
+  if (deltaY < 80) return;
+  state.detailsHidden = true;
+  restoreFocusAfterDetailsClose();
+  syncDetailsState();
 });
 
 elements.searchInput.addEventListener("input", (event) => {
   state.search = event.target.value;
-  const firstVisible = filteredPlaces()[0];
-  if (firstVisible && !filteredPlaces().some((place) => place.id === state.selectedId)) {
-    state.selectedId = firstVisible.id;
-  }
+  reconcileSelection();
   renderList();
+  renderDetails();
   syncMapVisibility();
 });
 
@@ -315,8 +436,23 @@ elements.resetButton.addEventListener("click", () => {
 
 elements.randomPlaceButton.addEventListener("click", () => {
   const visible = filteredPlaces();
-  const place = visible[Math.floor(Math.random() * visible.length)] || places[0];
+  if (!visible.length) {
+    state.selectedId = null;
+    state.detailsHidden = true;
+    renderDetails();
+    return;
+  }
+  const place = visible[Math.floor(Math.random() * visible.length)];
   selectPlace(place.id);
+  scrollToSelectedCard();
+  const row = elements.placeList.querySelector(`[data-id="${place.id}"]`);
+  if (!row) return;
+  row.classList.add("is-random-pick");
+  setTimeout(() => row.classList.remove("is-random-pick"), 700);
+});
+
+elements.mobileViewToggle.addEventListener("click", () => {
+  setMobileMapOpen(!state.mobileMapOpen);
 });
 
 elements.saveMapKeyButton.addEventListener("click", () => {
@@ -329,7 +465,7 @@ elements.saveMapKeyButton.addEventListener("click", () => {
 renderAll();
 const storedKey = localStorage.getItem("secretMoscowYandexKey");
 if (DEFAULT_YANDEX_MAPS_KEY || storedKey) {
-  initMap(DEFAULT_YANDEX_MAPS_KEY || storedKey);
+  initMap(storedKey || DEFAULT_YANDEX_MAPS_KEY);
 } else {
   elements.mapKeyPanel.classList.remove("hidden");
 }

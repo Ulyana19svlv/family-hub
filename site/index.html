@@ -4,10 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Секретная Москва</title>
-    <link rel="stylesheet" href="./styles.css?v=open-design-2" />
+    <link rel="stylesheet" href="./tokens.css?v=map-first-2" />
+    <link rel="stylesheet" href="./styles.css?v=map-first-2" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script defer src="./places.js?v=accent-1"></script>
-    <script defer src="./app.js?v=open-design-2"></script>
+    <script defer src="./app.js?v=map-first-2"></script>
   </head>
   <body>
     <main class="app-shell">
@@ -15,7 +16,7 @@
         <header class="brand">
           <div>
             <p class="eyebrow">личный гид</p>
-            <h1>Секретная Москва</h1>
+            <h1>Секретная<br />Москва</h1>
             <p class="brand-subtitle">места, куда хочется идти</p>
           </div>
           <div class="brand-actions">
@@ -61,8 +62,12 @@
             <button id="saveMapKeyButton">Открыть карту</button>
           </div>
         </div>
-        <article class="details-panel" id="detailsPanel"></article>
+        <article class="details-panel" id="detailsPanel" role="dialog" aria-modal="false" aria-hidden="true"></article>
+        <div class="map-loading" id="mapLoading">Загружаю карту</div>
       </section>
+      <button class="mobile-view-toggle" id="mobileViewToggle" type="button">
+        <i data-lucide="map"></i><span>Карта</span>
+      </button>
     </main>
   </body>
 </html>
