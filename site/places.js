@@ -1107,6 +1107,12 @@ window.SECRET_MOSCOW_PLACES = [
       "instagram": "https://www.instagram.com/kedr_zaytsevo?igsh=cHdpMGUzbXBnbmF3",
       "site": "https://zaytsevo.club/restaurants/"
     },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DXlmiDPiDTY/?img_index=7&igsh=MWVrZ3IzMW8zcnV0aA==",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
     "tags": [
       "загород",
       "лес",
@@ -1148,6 +1154,12 @@ window.SECRET_MOSCOW_PLACES = [
       "instagram": "https://www.instagram.com/domikvsadu/",
       "site": "https://domikvsadu.com/neskuchny"
     },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DXlmiDPiDTY/?img_index=14&igsh=MWVrZ3IzMW8zcnV0aA==",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
     "tags": [
       "сад",
       "веранда",
@@ -1187,6 +1199,12 @@ window.SECRET_MOSCOW_PLACES = [
     "description": "Музей фантастических существ и криптозоологии на 4 этаже ТРЦ «Европейский».",
     "links": {
       "instagram": "https://www.instagram.com/bestiary_moscow/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DXpCYyaCCUD/?img_index=3&igsh=MTQwaDA2bHdwZXRhdg==",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
     },
     "tags": [
       "музей",
@@ -1228,6 +1246,12 @@ window.SECRET_MOSCOW_PLACES = [
     "links": {
       "instagram": "https://www.instagram.com/accent_mk/",
       "site": "https://n2111970.yclients.com/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DXe9OjXiNrH/?img_index=1&igsh=ZXdhc2JwYjE1c2Q2",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
     },
     "tags": [
       "ювелирка",
