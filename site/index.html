@@ -49,8 +49,15 @@
         </section>
       </aside>
 
-      <section class="map-area">
-        <div id="map"></div>
+      <section class="content-area">
+        <section class="map-area" aria-label="Mini map">
+          <div class="map-toolbar">
+            <span>Карта Москвы</span>
+            <button class="icon-button compact" id="expandMapButton" type="button" title="Увеличить карту" aria-label="Увеличить карту">
+              <i data-lucide="maximize-2"></i>
+            </button>
+          </div>
+          <div id="map"></div>
         <div class="map-key-panel" id="mapKeyPanel">
           <div>
             <p class="panel-kicker">Яндекс.Карты</p>
@@ -62,8 +69,9 @@
             <button id="saveMapKeyButton">Открыть карту</button>
           </div>
         </div>
-        <article class="details-panel" id="detailsPanel" role="dialog" aria-modal="false" aria-hidden="true"></article>
         <div class="map-loading" id="mapLoading">Загружаю карту</div>
+        </section>
+        <article class="details-panel" id="detailsPanel" role="dialog" aria-modal="false" aria-hidden="true"></article>
       </section>
       <button class="mobile-view-toggle" id="mobileViewToggle" type="button">
         <i data-lucide="map"></i><span>Карта</span>

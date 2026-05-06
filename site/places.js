@@ -664,7 +664,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DWV1mxkDGpa/?img_index=1",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/frenkel.jpg"
     },
     "tags": [
       "керамика",
@@ -1117,7 +1118,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DXlmiDPiDTY/?img_index=7&igsh=MWVrZ3IzMW8zcnV0aA==",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/kedr.jpg"
     },
     "tags": [
       "загород",
@@ -1164,7 +1166,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DXlmiDPiDTY/?img_index=14&igsh=MWVrZ3IzMW8zcnV0aA==",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/domik-v-sadu.jpg"
     },
     "tags": [
       "сад",
@@ -1210,7 +1213,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DXpCYyaCCUD/?img_index=3&igsh=MTQwaDA2bHdwZXRhdg==",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/bestiary.jpg"
     },
     "tags": [
       "музей",
@@ -1257,7 +1261,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DXe9OjXiNrH/?img_index=1&igsh=ZXdhc2JwYjE1c2Q2",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/accent-jewelry-workshop.jpg"
     },
     "tags": [
       "ювелирка",
@@ -1304,7 +1309,8 @@ window.SECRET_MOSCOW_PLACES = [
       "type": "instagram",
       "url": "https://www.instagram.com/p/DX9U8gJDcvE/?img_index=4&igsh=MXJ0bDg1Z3hhdDJ4Zg==",
       "label": "Reels из Instagram",
-      "icon": "instagram"
+      "icon": "instagram",
+      "thumbnail": "./assets/thumbs/morning-coffee-club.jpg"
     },
     "tags": [
       "кофе",

@@ -4,6 +4,7 @@ const categories = ["все", ...Array.from(new Set(places.map((place) => place.
 const state = {
   category: "все",
   detailsHidden: true,
+  mapExpanded: false,
   mobileMapOpen: false,
   sheetDragStartY: null,
   search: "",
@@ -17,6 +18,7 @@ const elements = {
   categoryStrip: document.querySelector("#categoryStrip"),
   countLabel: document.querySelector("#countLabel"),
   detailsPanel: document.querySelector("#detailsPanel"),
+  expandMapButton: document.querySelector("#expandMapButton"),
   mapKeyInput: document.querySelector("#mapKeyInput"),
   mapKeyPanel: document.querySelector("#mapKeyPanel"),
   mapLoading: document.querySelector("#mapLoading"),
@@ -67,6 +69,25 @@ function setMobileMapOpen(isOpen) {
   if (icon) icon.setAttribute("data-lucide", isOpen ? "list" : "map");
   createIcons();
   if (isOpen && state.map) {
+    setTimeout(() => state.map.container.fitToViewport(), 80);
+  }
+}
+
+function setMapExpanded(isExpanded) {
+  state.mapExpanded = isExpanded;
+  document.body.classList.toggle("map-expanded", isExpanded);
+  const icon = elements.expandMapButton?.querySelector("i");
+  if (icon) icon.setAttribute("data-lucide", isExpanded ? "minimize-2" : "maximize-2");
+  elements.expandMapButton?.setAttribute(
+    "aria-label",
+    isExpanded ? "Свернуть карту" : "Увеличить карту"
+  );
+  elements.expandMapButton?.setAttribute(
+    "title",
+    isExpanded ? "Свернуть карту" : "Увеличить карту"
+  );
+  createIcons();
+  if (state.map) {
     setTimeout(() => state.map.container.fitToViewport(), 80);
   }
 }
@@ -122,6 +143,10 @@ function renderMediaContent(place, variant = "row") {
   const labelClass = variant === "details" ? "details-media-label" : "row-media-label";
   const icon = media.icon || (media.type === "video" ? "play" : "image");
 
+  if (media.thumbnail && variant === "row") {
+    return `<img src="${media.thumbnail}" alt="${media.alt || place.title}" loading="lazy" />`;
+  }
+
   if (media.type === "instagram" && media.url) {
     const embedUrl = getInstagramEmbedUrl(media.url);
     if (variant === "details" && embedUrl) {
@@ -147,7 +172,9 @@ function renderMediaContent(place, variant = "row") {
 }
 
 function renderRowMedia(place) {
-  return `<span class="row-media">${renderMediaContent(place, "row")}</span>`;
+  const media = getPlaceMedia(place);
+  const thumbnailClass = media.thumbnail ? " has-thumbnail" : "";
+  return `<span class="row-media${thumbnailClass}">${renderMediaContent(place, "row")}</span>`;
 }
 
 function renderDetailsMedia(place) {
@@ -435,7 +462,7 @@ function initMap(apiKey) {
 
     state.map.geoObjects.add(state.clusterer);
     syncMapVisibility();
-    selectPlace(state.selectedId, true, false);
+    selectPlace(state.selectedId, true, !window.matchMedia("(max-width: 768px)").matches);
     setMapLoading(false);
   }).catch(() => {
     setMapLoading(false);
@@ -459,9 +486,6 @@ elements.placeList.addEventListener("click", (event) => {
   const row = event.target.closest("[data-id]");
   if (!row) return;
   selectPlace(row.dataset.id);
-  if (window.matchMedia("(max-width: 768px)").matches) {
-    setMobileMapOpen(true);
-  }
 });
 
 elements.detailsPanel.addEventListener("click", (event) => {
@@ -525,12 +549,30 @@ elements.mobileViewToggle.addEventListener("click", () => {
   setMobileMapOpen(!state.mobileMapOpen);
 });
 
+elements.expandMapButton?.addEventListener("click", () => {
+  if (window.matchMedia("(max-width: 768px)").matches && !state.mobileMapOpen) {
+    setMobileMapOpen(true);
+    return;
+  }
+  setMapExpanded(!state.mapExpanded);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (state.mapExpanded) setMapExpanded(false);
+  if (state.mobileMapOpen) setMobileMapOpen(false);
+});
+
 elements.saveMapKeyButton.addEventListener("click", () => {
   const apiKey = elements.mapKeyInput.value.trim();
   if (!apiKey) return;
   localStorage.setItem("secretMoscowYandexKey", apiKey);
   initMap(apiKey);
 });
+
+if (!window.matchMedia("(max-width: 768px)").matches) {
+  state.detailsHidden = false;
+}
 
 renderAll();
 const storedKey = localStorage.getItem("secretMoscowYandexKey");
