@@ -660,6 +660,12 @@ window.SECRET_MOSCOW_PLACES = [
       "instagram": "https://www.instagram.com/frenkel_ceramics/",
       "site": "https://frenkelceramics.ru/"
     },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DWV1mxkDGpa/?img_index=1",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
     "tags": [
       "керамика",
       "мастер-класс",
