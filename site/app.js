@@ -155,7 +155,8 @@ function renderMediaContent(place, variant = "row") {
 function renderRowMedia(place) {
   const media = getPlaceMedia(place);
   const thumbnailClass = media.thumbnail ? " has-thumbnail" : "";
-  return `<span class="row-media${thumbnailClass}">${renderMediaContent(place, "row")}</span>`;
+  const thumbnailStyle = media.thumbnail ? ` style="--thumb-url: url('${media.thumbnail}')"` : "";
+  return `<span class="row-media${thumbnailClass}"${thumbnailStyle}>${renderMediaContent(place, "row")}</span>`;
 }
 
 function renderDetailsMedia(place) {
