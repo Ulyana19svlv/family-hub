@@ -4,7 +4,6 @@ const categories = ["все", ...Array.from(new Set(places.map((place) => place.
 const state = {
   category: "все",
   detailsHidden: true,
-  mapExpanded: false,
   mobileMapOpen: false,
   sheetDragStartY: null,
   search: "",
@@ -16,9 +15,9 @@ const state = {
 
 const elements = {
   categoryStrip: document.querySelector("#categoryStrip"),
+  closeMapButton: document.querySelector("#closeMapButton"),
   countLabel: document.querySelector("#countLabel"),
   detailsPanel: document.querySelector("#detailsPanel"),
-  expandMapButton: document.querySelector("#expandMapButton"),
   mapKeyInput: document.querySelector("#mapKeyInput"),
   mapKeyPanel: document.querySelector("#mapKeyPanel"),
   mapLoading: document.querySelector("#mapLoading"),
@@ -65,34 +64,16 @@ function setMobileMapOpen(isOpen) {
   document.body.classList.toggle("mobile-map-open", isOpen);
   const label = elements.mobileViewToggle?.querySelector("span");
   const icon = elements.mobileViewToggle?.querySelector("i");
-  if (label) label.textContent = isOpen ? "Список" : "Карта";
-  if (icon) icon.setAttribute("data-lucide", isOpen ? "list" : "map");
+  if (label) label.textContent = isOpen ? "Закрыть карту" : "Карта";
+  if (icon) icon.setAttribute("data-lucide", "map");
   createIcons();
   if (isOpen && state.map) {
     setTimeout(() => state.map.container.fitToViewport(), 80);
   }
 }
 
-function setMapExpanded(isExpanded) {
-  state.mapExpanded = isExpanded;
-  document.body.classList.toggle("map-expanded", isExpanded);
-  const icon = elements.expandMapButton?.querySelector("i");
-  if (icon) icon.setAttribute("data-lucide", isExpanded ? "minimize-2" : "maximize-2");
-  elements.expandMapButton?.setAttribute(
-    "aria-label",
-    isExpanded ? "Свернуть карту" : "Увеличить карту"
-  );
-  elements.expandMapButton?.setAttribute(
-    "title",
-    isExpanded ? "Свернуть карту" : "Увеличить карту"
-  );
-  createIcons();
-  if (state.map) {
-    setTimeout(() => state.map.container.fitToViewport(), 80);
-  }
-}
-
 function syncDetailsState() {
+  document.body.classList.toggle("details-open", !state.detailsHidden);
   elements.detailsPanel.classList.toggle("hidden", state.detailsHidden);
   elements.detailsPanel.setAttribute("aria-hidden", String(state.detailsHidden));
   if (state.detailsHidden) {
@@ -497,7 +478,7 @@ elements.detailsPanel.addEventListener("click", (event) => {
 
 elements.detailsPanel.addEventListener("pointerdown", (event) => {
   if (!window.matchMedia("(max-width: 768px)").matches) return;
-  state.sheetDragStartY = event.clientY;
+  state.sheetDragStartY = null;
 });
 
 elements.detailsPanel.addEventListener("pointerup", (event) => {
@@ -549,17 +530,12 @@ elements.mobileViewToggle.addEventListener("click", () => {
   setMobileMapOpen(!state.mobileMapOpen);
 });
 
-elements.expandMapButton?.addEventListener("click", () => {
-  if (window.matchMedia("(max-width: 768px)").matches && !state.mobileMapOpen) {
-    setMobileMapOpen(true);
-    return;
-  }
-  setMapExpanded(!state.mapExpanded);
+elements.closeMapButton?.addEventListener("click", () => {
+  setMobileMapOpen(false);
 });
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
-  if (state.mapExpanded) setMapExpanded(false);
   if (state.mobileMapOpen) setMobileMapOpen(false);
 });
 

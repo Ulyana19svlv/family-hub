@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Секретная Москва</title>
-    <link rel="stylesheet" href="./tokens.css?v=catalog-3" />
-    <link rel="stylesheet" href="./styles.css?v=catalog-3" />
+    <link rel="stylesheet" href="./tokens.css?v=catalog-4" />
+    <link rel="stylesheet" href="./styles.css?v=catalog-4" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="./places.js?v=catalog-3"></script>
-    <script defer src="./app.js?v=catalog-3"></script>
+    <script defer src="./places.js?v=catalog-4"></script>
+    <script defer src="./app.js?v=catalog-4"></script>
   </head>
   <body>
     <main class="app-shell">
@@ -28,6 +28,9 @@
             </a>
             <button class="icon-button" id="randomPlaceButton" title="Случайное место" aria-label="Случайное место">
               <i data-lucide="shuffle"></i>
+            </button>
+            <button class="icon-button mobile-view-toggle" id="mobileViewToggle" type="button" title="Карта" aria-label="Карта">
+              <i data-lucide="map"></i><span>Карта</span>
             </button>
           </div>
         </header>
@@ -53,8 +56,8 @@
         <section class="map-area" aria-label="Mini map">
           <div class="map-toolbar">
             <span>Карта Москвы</span>
-            <button class="icon-button compact" id="expandMapButton" type="button" title="Увеличить карту" aria-label="Увеличить карту">
-              <i data-lucide="maximize-2"></i>
+            <button class="icon-button compact" id="closeMapButton" type="button" title="Закрыть карту" aria-label="Закрыть карту">
+              <i data-lucide="x"></i>
             </button>
           </div>
           <div id="map"></div>
@@ -73,9 +76,6 @@
         </section>
         <article class="details-panel" id="detailsPanel" role="dialog" aria-modal="false" aria-hidden="true"></article>
       </section>
-      <button class="mobile-view-toggle" id="mobileViewToggle" type="button">
-        <i data-lucide="map"></i><span>Карта</span>
-      </button>
     </main>
   </body>
 </html>
