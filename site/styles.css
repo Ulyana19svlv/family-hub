@@ -329,6 +329,13 @@ h1 {
   object-fit: cover;
 }
 
+.instagram-embed {
+  width: 100%;
+  height: min(620px, 70vh);
+  border: 0;
+  background: #fff;
+}
+
 .row-media-label {
   display: grid;
   gap: 6px;
@@ -594,7 +601,8 @@ h1 {
 
 .details-media {
   display: grid;
-  aspect-ratio: 16 / 9;
+  min-height: 280px;
+  max-height: min(620px, 70vh);
   overflow: hidden;
   place-items: center;
   margin: 14px 0 16px;

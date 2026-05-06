@@ -111,10 +111,24 @@ function getPlaceMedia(place) {
   };
 }
 
+function getInstagramEmbedUrl(url) {
+  const match = String(url || "").match(/instagram\.com\/(p|reel|tv)\/([^/?#]+)/i);
+  if (!match) return "";
+  return `https://www.instagram.com/${match[1]}/${match[2]}/embed`;
+}
+
 function renderMediaContent(place, variant = "row") {
   const media = getPlaceMedia(place);
   const labelClass = variant === "details" ? "details-media-label" : "row-media-label";
   const icon = media.icon || (media.type === "video" ? "play" : "image");
+
+  if (media.type === "instagram" && media.url) {
+    const embedUrl = getInstagramEmbedUrl(media.url);
+    if (variant === "details" && embedUrl) {
+      return `<iframe class="instagram-embed" src="${embedUrl}" title="${place.title} в Instagram" loading="lazy" allowtransparency="true" allowfullscreen></iframe>`;
+    }
+    return `<span class="${labelClass}"><i data-lucide="instagram"></i><span>${media.label || "Instagram / Reels"}</span></span>`;
+  }
 
   if (media.type === "image" && media.src) {
     return `<img src="${media.src}" alt="${media.alt || place.title}" loading="lazy" />`;

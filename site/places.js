@@ -1271,7 +1271,7 @@ window.SECRET_MOSCOW_PLACES = [
       "telegram": "https://t.me/morningcoffeeclub"
     },
     "media": {
-      "type": "link",
+      "type": "instagram",
       "url": "https://www.instagram.com/p/DX9U8gJDcvE/?img_index=4&igsh=MXJ0bDg1Z3hhdDJ4Zg==",
       "label": "Reels из Instagram",
       "icon": "instagram"
