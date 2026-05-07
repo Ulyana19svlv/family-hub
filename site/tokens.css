@@ -1,27 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap&subset=cyrillic");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=cyrillic");
 
 :root {
   color-scheme: light;
-  --color-bg: #fff8ec;
-  --color-surface: #fffdf7;
+  --color-bg: #f7f7f5;
+  --color-surface: #fbfaf8;
   --color-surface-strong: #ffffff;
-  --color-text: #151718;
-  --color-muted: #67645d;
-  --color-border: #202020;
-  --color-primary: #0f6b52;
-  --color-accent: #ff4f7b;
-  --color-support: #d9ff48;
-  --color-info: #156cff;
-  --color-warm: #ffd05a;
-  --font-display: "Unbounded", "Arial Black", system-ui, sans-serif;
-  --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --shadow-sm: 2px 2px 0 rgba(21, 23, 24, 0.18);
-  --shadow-md: 5px 5px 0 rgba(21, 23, 24, 0.16);
-  --shadow-lg: 10px 10px 0 rgba(21, 23, 24, 0.16);
-  --focus-ring: 0 0 0 3px rgba(217, 255, 72, 0.75), 0 0 0 5px rgba(21, 23, 24, 0.78);
+  --color-text: #222222;
+  --color-muted: #6a6a6a;
+  --color-border: #dddddd;
+  --color-primary: #ff385c;
+  --color-accent: #ff385c;
+  --color-support: #f7f2ef;
+  --color-info: #315f72;
+  --color-warm: #f1ebe5;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --focus-ring: 0 0 0 3px rgba(255, 56, 92, 0.18), 0 0 0 1px rgba(255, 56, 92, 0.55);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
