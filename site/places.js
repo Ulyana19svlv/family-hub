@@ -1828,5 +1828,52 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "ekler-cafeteria",
+    "title": "Кафетерий «ЭКЛЕР»",
+    "category": "рестораны и кафе",
+    "address": "Большой Трёхсвятительский переулок, 2/1с5, Москва",
+    "coords": [
+      55.7550389,
+      37.6445522
+    ],
+    "description": "Кафетерий в районе Ивановской горки: место для кофе, эклеров и короткой красивой паузы в центре.",
+    "links": {
+      "instagram": "https://www.instagram.com/ekler.mos?igsh=aHExeXJ0eGJ4dHN5",
+      "site": "https://taplink.cc/ekler.mos"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/Cho-YXCPmro/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кофе",
+      "десерты",
+      "центр"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.6,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Китай-город",
+          "distanceKm": 0.9
+        },
+        {
+          "name": "Чкаловская",
+          "distanceKm": 1
+        },
+        {
+          "name": "Курская",
+          "distanceKm": 1.1
+        }
+      ]
+    }
   }
 ];
