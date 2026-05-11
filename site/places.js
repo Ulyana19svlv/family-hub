@@ -1500,5 +1500,52 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "yudashkin-sad",
+    "title": "Yudashkin Сад",
+    "category": "рестораны и кафе",
+    "address": "Вознесенский переулок, 6/3с1, Москва",
+    "coords": [
+      55.7564,
+      37.6047
+    ],
+    "description": "Ресторан-веранда в саду Дома моды Валентина Юдашкина. Открыт каждый день 12:00-00:00, бронь: 8 (495) 646-07-87.",
+    "links": {
+      "instagram": "https://www.instagram.com/yudashkinsad/",
+      "telegram": "https://t.me/pleasebegentlerestaurants"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/C-sesaGM8bE/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "веранда",
+      "сад",
+      "ужин"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 5.1,
+        "minutes": 18,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Арбатская",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Александровский сад",
+          "distanceKm": 0.9
+        },
+        {
+          "name": "Тверская",
+          "distanceKm": 1
+        }
+      ]
+    }
   }
 ];
