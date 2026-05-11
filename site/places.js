@@ -1956,6 +1956,53 @@ window.SECRET_MOSCOW_PLACES = [
     "city": "Москва"
   },
   {
+    "id": "moomi-cafe",
+    "title": "Moomi",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "ЖК Union Park, бульвар Генерала Карбышева, 11, 1 этаж, Москва",
+    "coords": [
+      55.7804434,
+      37.4688467
+    ],
+    "description": "Светлое семейное кафе и kids space в Union Park: еда для взрослых и детей, игровое пространство, мастер-классы и праздники.",
+    "links": {
+      "telegram": "https://t.me/moomikidsetc",
+      "site": "https://moomi.space/cafe"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://static.tildacdn.com/tild3339-3539-4531-b531-346665646265/31.jpg",
+      "alt": "Интерьер семейного кафе Moomi"
+    },
+    "tags": [
+      "детское кафе",
+      "игровая",
+      "семейное"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 13.5,
+        "minutes": 35,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Народное Ополчение",
+          "distanceKm": 1.1
+        },
+        {
+          "name": "Октябрьское Поле",
+          "distanceKm": 1.9
+        },
+        {
+          "name": "Хорошёво",
+          "distanceKm": 2.4
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
