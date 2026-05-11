@@ -1875,5 +1875,39 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "officially-offline",
+    "title": "Officially Offline",
+    "category": "пространства",
+    "address": "Москва, локация зависит от встречи",
+    "coords": [
+      55.7558,
+      37.6176
+    ],
+    "description": "Пространство без телефонов: встречи назначаются заранее, а локации меняются от события к событию.",
+    "links": {
+      "instagram": "https://www.instagram.com/officially__offline/",
+      "site": "https://www.officiallyoffline.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DX8oD8pI9CS/?igsh=OXp3aDlscTNlNnZq",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "без телефонов",
+      "встречи",
+      "slow life"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.1,
+        "minutes": 25,
+        "note": "локация меняется, время примерное до центра"
+      },
+      "metro": []
+    }
   }
 ];
