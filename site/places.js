@@ -1413,5 +1413,49 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "morpheus-theatre",
+    "title": "Иммерсивный театр «Морфеус»",
+    "category": "театры",
+    "address": "Малый Дровяной переулок, 6, Москва",
+    "coords": [
+      55.7463704,
+      37.6580608
+    ],
+    "description": "Иммерсивный театр, где действие происходит вокруг зрителя и внутри его воображения.",
+    "links": {
+      "instagram": "https://www.instagram.com/reel/DVGtXuRCGLg/",
+      "telegram": "https://t.me/morpheus_theatre",
+      "site": "https://morpheus-show.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DVGtXuRCGLg/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "иммерсивно",
+      "театр",
+      "необычно"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 5.8,
+        "minutes": 20,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Марксистская",
+          "distanceKm": 0.6
+        },
+        {
+          "name": "Таганская",
+          "distanceKm": 0.8
+        }
+      ]
+    }
   }
 ];

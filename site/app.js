@@ -36,6 +36,7 @@ const categoryMeta = {
   "спорт и активность": { icon: "activity", accent: "blue" },
   "мастер-классы": { icon: "palette", accent: "violet" },
   "пространства": { icon: "gem", accent: "pink" },
+  "театры": { icon: "theater", accent: "violet" },
   "спа и красота": { icon: "flower", accent: "peach" },
   "события": { icon: "ticket", accent: "amber" },
   "все": { icon: "layout-grid", accent: "ink" }
