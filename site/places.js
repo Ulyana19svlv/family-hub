@@ -1331,5 +1331,44 @@ window.SECRET_MOSCOW_PLACES = [
       },
       "metro": []
     }
+  },
+  {
+    "id": "yahroma-tobogan",
+    "title": "Аттракцион Тобоган в парке Яхрома",
+    "category": "парки и прогулки",
+    "address": "Московская область, Дмитровский городской округ, город Яхрома, д. Животино, Парк «Яхрома»",
+    "coords": [
+      56.29289,
+      37.4794
+    ],
+    "description": "Горный аттракцион в Парке Яхрома: спуск по рельсовой трассе среди склонов, хороший вариант для активной загородной прогулки.",
+    "links": {
+      "instagram": "https://www.instagram.com/park_yahroma/",
+      "site": "https://yahroma-park.ru/uslugi/tobogan?ysclid=mp166jw7aj607594142"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DYATsuaM2H3/?igsh=Z25heWMyc3lkeTRt",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "загород",
+      "аттракцион",
+      "активно"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 73,
+        "minutes": 90,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Яхрома",
+          "distanceKm": 4
+        }
+      ]
+    }
   }
 ];
