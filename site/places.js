@@ -1641,5 +1641,53 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "ryabchik-cafe",
+    "title": "Рябчик",
+    "category": "рестораны и кафе",
+    "address": "улица Макаренко, 2/21с3, Москва",
+    "coords": [
+      55.7606907,
+      37.6472498
+    ],
+    "description": "Уютное кафе на Чистых прудах с загородным настроением и русской кухней в авторской интерпретации.",
+    "links": {
+      "instagram": "https://www.instagram.com/ryabchik_cafe/",
+      "telegram": "https://t.me/ryabchik_cafe",
+      "site": "https://www.ryabchik-cafe.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DXJmMgWjJ48/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "русская кухня",
+      "уютно",
+      "центр"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 8.2,
+        "minutes": 28,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Чистые пруды",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Тургеневская",
+          "distanceKm": 0.8
+        },
+        {
+          "name": "Сретенский бульвар",
+          "distanceKm": 0.9
+        }
+      ]
+    }
   }
 ];
