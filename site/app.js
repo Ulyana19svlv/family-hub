@@ -3,6 +3,7 @@ const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
 const ALL_CATEGORIES = "все";
 const DEFAULT_CITY = "Москва";
 const ALL_CITIES = "все города";
+const VISIT_NOTES_KEY = "secretMoscowVisitNotes";
 const categories = [ALL_CATEGORIES, ...Array.from(new Set(places.map((place) => place.category)))];
 const cities = [DEFAULT_CITY, ...Array.from(new Set(places.map((place) => place.city || DEFAULT_CITY))).filter((city) => city !== DEFAULT_CITY), ALL_CITIES];
 const state = {
@@ -15,7 +16,8 @@ const state = {
   selectedId: places[0].id,
   map: null,
   clusterer: null,
-  placemarks: new Map()
+  placemarks: new Map(),
+  visitNotes: loadVisitNotes()
 };
 
 const elements = {
@@ -92,6 +94,88 @@ function createIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
   }
+}
+
+function getStorageValue(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function setStorageValue(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // The UI should keep working even if private browsing blocks local storage.
+  }
+}
+
+function loadVisitNotes() {
+  try {
+    const saved = JSON.parse(getStorageValue(VISIT_NOTES_KEY) || "{}");
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveVisitNotes() {
+  setStorageValue(VISIT_NOTES_KEY, JSON.stringify(state.visitNotes));
+}
+
+function getVisitNote(placeId) {
+  return state.visitNotes[placeId] || { status: "want", comment: "" };
+}
+
+function updateVisitNote(placeId, patch) {
+  state.visitNotes[placeId] = { ...getVisitNote(placeId), ...patch };
+  saveVisitNotes();
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderVisitBadge(place) {
+  const note = getVisitNote(place.id);
+  const isVisited = note.status === "visited";
+  return `
+    <span class="visit-badge ${isVisited ? "visited" : "want"}">
+      <i data-lucide="${isVisited ? "check" : "bookmark"}"></i>${isVisited ? "были" : "хотим"}
+    </span>
+  `;
+}
+
+function renderVisitJournal(place) {
+  const note = getVisitNote(place.id);
+  const isVisited = note.status === "visited";
+  return `
+    <section class="visit-journal" aria-label="Семейная заметка">
+      <div class="visit-journal-head">
+        <span>Семейный след</span>
+        ${renderVisitBadge(place)}
+      </div>
+      <div class="status-toggle" role="group" aria-label="Статус визита">
+        <button type="button" class="${!isVisited ? "active" : ""}" data-visit-status="want">
+          <i data-lucide="bookmark"></i>Хотим сходить
+        </button>
+        <button type="button" class="${isVisited ? "active" : ""}" data-visit-status="visited">
+          <i data-lucide="check"></i>Были
+        </button>
+      </div>
+      <label class="impression-field">
+        <span>Впечатления</span>
+        <textarea id="visitComment" rows="4" placeholder="Что запомнилось, хочется ли повторить, с кем лучше идти">${escapeHtml(note.comment)}</textarea>
+      </label>
+    </section>
+  `;
 }
 
 function setMapLoading(isLoading) {
@@ -278,7 +362,7 @@ function renderList() {
     return `
       <button class="place-row ${active}" data-id="${place.id}" data-accent="${meta.accent}">
         ${renderRowMedia(place)}
-        <span class="row-kicker"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}</span>
+        <span class="row-kicker"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}${renderVisitBadge(place)}</span>
         <span class="row-title">${place.title}</span>
         <span class="row-description">${place.description}</span>
         <span class="row-access">
@@ -325,13 +409,14 @@ function renderDetails() {
   elements.detailsPanel.innerHTML = `
     <div class="details-art" data-accent="${meta.accent}"></div>
     <div class="details-top">
-      <span class="details-category"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}</span>
+      <span class="details-category"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}${renderVisitBadge(place)}</span>
       <button class="icon-button compact" id="closeDetailsButton" title="Свернуть" aria-label="Свернуть">
         <i data-lucide="panel-right-close"></i>
       </button>
     </div>
     <h2 id="detailsTitle">${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
+    ${renderVisitJournal(place)}
     ${renderDetailsMedia(place)}
     <div class="access-strip">
       <div>
@@ -566,10 +651,24 @@ elements.placeList.addEventListener("click", (event) => {
 });
 
 elements.detailsPanel.addEventListener("click", (event) => {
-  if (!event.target.closest("#closeDetailsButton")) return;
-  state.detailsHidden = true;
-  restoreFocusAfterDetailsClose();
-  syncDetailsState();
+  const statusButton = event.target.closest("[data-visit-status]");
+  if (statusButton && state.selectedId) {
+    updateVisitNote(state.selectedId, { status: statusButton.dataset.visitStatus });
+    renderList();
+    renderDetails();
+    return;
+  }
+
+  if (event.target.closest("#closeDetailsButton")) {
+    state.detailsHidden = true;
+    restoreFocusAfterDetailsClose();
+    syncDetailsState();
+  }
+});
+
+elements.detailsPanel.addEventListener("input", (event) => {
+  if (!event.target.matches("#visitComment") || !state.selectedId) return;
+  updateVisitNote(state.selectedId, { comment: event.target.value });
 });
 
 elements.detailsPanel.addEventListener("pointerdown", (event) => {
@@ -641,7 +740,7 @@ document.addEventListener("keydown", (event) => {
 elements.saveMapKeyButton.addEventListener("click", () => {
   const apiKey = elements.mapKeyInput.value.trim();
   if (!apiKey) return;
-  localStorage.setItem("secretMoscowYandexKey", apiKey);
+  setStorageValue("secretMoscowYandexKey", apiKey);
   initMap(apiKey);
 });
 
@@ -650,7 +749,7 @@ if (!window.matchMedia("(max-width: 768px)").matches) {
 }
 
 renderAll();
-const storedKey = localStorage.getItem("secretMoscowYandexKey");
+const storedKey = getStorageValue("secretMoscowYandexKey");
 if (DEFAULT_YANDEX_MAPS_KEY || storedKey) {
   initMap(storedKey || DEFAULT_YANDEX_MAPS_KEY);
 } else {
