@@ -1782,5 +1782,51 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "ryabushinsky-mansion-museum",
+    "title": "Особняк Рябушинского",
+    "category": "музеи и выставки",
+    "address": "Малая Никитская улица, 6/2с5, Москва",
+    "coords": [
+      55.7582421,
+      37.5963004
+    ],
+    "description": "Музей-квартира А. М. Горького в особняке Рябушинского: один из главных московских памятников модерна с легендарной лестницей-волной и историческими интерьерами.",
+    "links": {
+      "telegram": "https://t.me/osobnyak_ryabushinskogo",
+      "site": "https://museum.imli.ru/?ysclid=mp1cxss20557133027"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Moscow_Ryabushinsky_House_2013-03_1364140021.JPG/960px-Moscow_Ryabushinsky_House_2013-03_1364140021.JPG",
+      "alt": "Интерьер особняка Рябушинского"
+    },
+    "tags": [
+      "модерн",
+      "особняк",
+      "интерьеры"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 4.2,
+        "minutes": 15,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Арбатская",
+          "distanceKm": 0.9
+        },
+        {
+          "name": "Баррикадная",
+          "distanceKm": 1
+        },
+        {
+          "name": "Пушкинская",
+          "distanceKm": 1.1
+        }
+      ]
+    }
   }
 ];
