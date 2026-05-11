@@ -1,8 +1,13 @@
 const places = window.SECRET_MOSCOW_PLACES;
 const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
-const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
+const ALL_CATEGORIES = "все";
+const DEFAULT_CITY = "Москва";
+const ALL_CITIES = "все города";
+const categories = [ALL_CATEGORIES, ...Array.from(new Set(places.map((place) => place.category)))];
+const cities = [DEFAULT_CITY, ...Array.from(new Set(places.map((place) => place.city || DEFAULT_CITY))).filter((city) => city !== DEFAULT_CITY), ALL_CITIES];
 const state = {
-  category: "все",
+  category: ALL_CATEGORIES,
+  city: DEFAULT_CITY,
   detailsHidden: true,
   mobileMapOpen: false,
   sheetDragStartY: null,
@@ -14,13 +19,17 @@ const state = {
 };
 
 const elements = {
+  brandSubtitle: document.querySelector("#brandSubtitle"),
+  brandTitle: document.querySelector("#brandTitle"),
   categoryStrip: document.querySelector("#categoryStrip"),
+  cityStrip: document.querySelector("#cityStrip"),
   closeMapButton: document.querySelector("#closeMapButton"),
   countLabel: document.querySelector("#countLabel"),
   detailsPanel: document.querySelector("#detailsPanel"),
   mapKeyInput: document.querySelector("#mapKeyInput"),
   mapKeyPanel: document.querySelector("#mapKeyPanel"),
   mapLoading: document.querySelector("#mapLoading"),
+  mapToolbarTitle: document.querySelector("#mapToolbarTitle"),
   mobileViewToggle: document.querySelector("#mobileViewToggle"),
   placeList: document.querySelector("#placeList"),
   randomPlaceButton: document.querySelector("#randomPlaceButton"),
@@ -48,6 +57,35 @@ function prefersReducedMotion() {
 
 function getCategoryMeta(category) {
   return categoryMeta[category] || { icon: "map-pin", accent: "ink" };
+}
+
+function getPlaceCity(place) {
+  return place.city || DEFAULT_CITY;
+}
+
+function getCityTitle(city) {
+  if (city === "Санкт-Петербург") return "Секретный Санкт-Петербург";
+  if (city === ALL_CITIES) return "Секретные места";
+  return `Секретная ${city}`;
+}
+
+function getCitySubtitle(city) {
+  if (city === ALL_CITIES) return "места, куда хочется идти";
+  if (city === "Санкт-Петербург") return "Петербург, куда хочется идти";
+  return "места, куда хочется идти";
+}
+
+function renderBrand() {
+  const title = getCityTitle(state.city);
+  if (elements.brandTitle) {
+    const parts = title.split(" ");
+    elements.brandTitle.innerHTML = `${parts[0]}<br />${parts.slice(1).join(" ")}`;
+  }
+  if (elements.brandSubtitle) elements.brandSubtitle.textContent = getCitySubtitle(state.city);
+  if (elements.mapToolbarTitle) {
+    elements.mapToolbarTitle.textContent = state.city === ALL_CITIES ? "Карта мест" : `Карта: ${state.city}`;
+  }
+  document.title = getCityTitle(state.city);
 }
 
 function createIcons() {
@@ -176,9 +214,11 @@ function formatMetro(access) {
 function filteredPlaces() {
   const query = state.search.trim().toLowerCase();
   return places.filter((place) => {
-    const categoryMatch = state.category === "все" || place.category === state.category;
-    const text = `${place.title} ${place.address} ${place.description} ${place.tags.join(" ")}`.toLowerCase();
-    return categoryMatch && (!query || text.includes(query));
+    const city = getPlaceCity(place);
+    const cityMatch = state.city === ALL_CITIES || city === state.city;
+    const categoryMatch = state.category === ALL_CATEGORIES || place.category === state.category;
+    const text = `${city} ${place.title} ${place.address} ${place.description} ${place.tags.join(" ")}`.toLowerCase();
+    return cityMatch && categoryMatch && (!query || text.includes(query));
   });
 }
 
@@ -210,12 +250,26 @@ function renderCategories() {
   }).join("");
 }
 
+function renderCities() {
+  if (!elements.cityStrip) return;
+  elements.cityStrip.innerHTML = cities.map((city) => {
+    const active = city === state.city ? "active" : "";
+    const icon = city === ALL_CITIES ? "map" : "map-pin";
+    return `
+      <button class="category-chip city-chip ${active}" data-city="${city}">
+        <i data-lucide="${icon}"></i>${city}
+      </button>
+    `;
+  }).join("");
+}
+
 function renderList() {
   const visible = filteredPlaces();
   elements.countLabel.textContent = `${visible.length} мест`;
   elements.placeList.innerHTML = visible.map((place) => {
     const active = place.id === state.selectedId ? "active" : "";
     const meta = getCategoryMeta(place.category);
+    const city = getPlaceCity(place);
     const social = [
       place.links.instagram && "Instagram",
       place.links.telegram && "Telegram",
@@ -224,7 +278,7 @@ function renderList() {
     return `
       <button class="place-row ${active}" data-id="${place.id}" data-accent="${meta.accent}">
         ${renderRowMedia(place)}
-        <span class="row-kicker"><i data-lucide="${meta.icon}"></i>${place.category}</span>
+        <span class="row-kicker"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}</span>
         <span class="row-title">${place.title}</span>
         <span class="row-description">${place.description}</span>
         <span class="row-access">
@@ -259,6 +313,7 @@ function renderDetails() {
     return;
   }
   const meta = getCategoryMeta(place.category);
+  const city = getPlaceCity(place);
 
   const links = [
     place.links.site && ["Сайт", "globe", place.links.site],
@@ -270,7 +325,7 @@ function renderDetails() {
   elements.detailsPanel.innerHTML = `
     <div class="details-art" data-accent="${meta.accent}"></div>
     <div class="details-top">
-      <span class="details-category"><i data-lucide="${meta.icon}"></i>${place.category}</span>
+      <span class="details-category"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}</span>
       <button class="icon-button compact" id="closeDetailsButton" title="Свернуть" aria-label="Свернуть">
         <i data-lucide="panel-right-close"></i>
       </button>
@@ -373,7 +428,31 @@ function syncMapVisibility() {
   });
 }
 
+function fitMapToVisiblePlaces() {
+  if (!state.map) return;
+  const visible = filteredPlaces();
+  if (!visible.length) return;
+  if (visible.length === 1) {
+    state.map.setCenter(visible[0].coords, 13, { duration: prefersReducedMotion() ? 0 : 250 });
+    return;
+  }
+  const bounds = visible.reduce((acc, place) => {
+    acc[0][0] = Math.min(acc[0][0], place.coords[0]);
+    acc[0][1] = Math.min(acc[0][1], place.coords[1]);
+    acc[1][0] = Math.max(acc[1][0], place.coords[0]);
+    acc[1][1] = Math.max(acc[1][1], place.coords[1]);
+    return acc;
+  }, [[visible[0].coords[0], visible[0].coords[1]], [visible[0].coords[0], visible[0].coords[1]]]);
+  state.map.setBounds(bounds, {
+    checkZoomRange: true,
+    duration: prefersReducedMotion() ? 0 : 260,
+    zoomMargin: [56, 56, 56, 56]
+  });
+}
+
 function renderAll() {
+  renderBrand();
+  renderCities();
   renderCategories();
   renderList();
   renderDetails();
@@ -432,7 +511,7 @@ function initMap(apiKey) {
       const placemark = new ymaps.Placemark(place.coords, {
         hintContent: place.title,
         balloonContentHeader: place.title,
-        balloonContentBody: `<strong>${place.category}</strong><br>${place.address}`,
+        balloonContentBody: `<strong>${getPlaceCity(place)} · ${place.category}</strong><br>${place.address}`,
         balloonContentFooter: `<a href="${linkToYandex(place)}" target="_blank" rel="noreferrer">Открыть в Яндекс.Картах</a>`
       }, {
         preset: "islands#darkGreenDotIcon"
@@ -462,6 +541,22 @@ elements.categoryStrip.addEventListener("click", (event) => {
   renderListWithTransition();
   renderDetails();
   syncMapVisibility();
+  fitMapToVisiblePlaces();
+});
+
+elements.cityStrip?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-city]");
+  if (!button) return;
+  state.city = button.dataset.city;
+  state.category = ALL_CATEGORIES;
+  reconcileSelection();
+  renderBrand();
+  renderCities();
+  renderCategories();
+  renderListWithTransition();
+  renderDetails();
+  syncMapVisibility();
+  fitMapToVisiblePlaces();
 });
 
 elements.placeList.addEventListener("click", (event) => {
@@ -498,15 +593,18 @@ elements.searchInput.addEventListener("input", (event) => {
   renderList();
   renderDetails();
   syncMapVisibility();
+  fitMapToVisiblePlaces();
 });
 
 elements.resetButton.addEventListener("click", () => {
-  state.category = "все";
+  state.category = ALL_CATEGORIES;
+  state.city = DEFAULT_CITY;
   state.search = "";
-  state.selectedId = places[0].id;
+  state.selectedId = places.find((place) => getPlaceCity(place) === DEFAULT_CITY)?.id || places[0].id;
   elements.searchInput.value = "";
   renderAll();
   syncMapVisibility();
+  fitMapToVisiblePlaces();
   selectPlace(state.selectedId);
 });
 

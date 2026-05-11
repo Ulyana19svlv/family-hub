@@ -38,7 +38,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.4
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "tatooine",
@@ -85,7 +86,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.6
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "magadan",
@@ -126,7 +128,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "mesto-byt",
@@ -167,7 +170,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "doaflip",
@@ -208,7 +212,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.5
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "anna-varenina",
@@ -248,7 +253,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.4
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "edomo",
@@ -289,7 +295,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.7
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "river-tram-city",
@@ -327,7 +334,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.9
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "huamin",
@@ -367,7 +375,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 2.2
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "parfutique",
@@ -408,7 +417,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "kinopark-moskino",
@@ -448,7 +458,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 19.7
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "soshyu",
@@ -489,7 +500,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 2.2
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "literary-floor",
@@ -527,7 +539,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "divnica",
@@ -568,7 +581,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "euphoria",
@@ -609,7 +623,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "zilart-museum",
@@ -650,7 +665,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.5
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "frenkel",
@@ -698,7 +714,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.9
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "zatsepi",
@@ -739,7 +756,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.9
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "palitra-chuvstv",
@@ -780,7 +798,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.7
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "aptekarsky-ogorod",
@@ -821,7 +840,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "bitva-moscow",
@@ -861,7 +881,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "vdnh-bees",
@@ -901,7 +922,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 2.8
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "fyut",
@@ -942,7 +964,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.8
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "krutye-zheltki",
@@ -982,7 +1005,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.6
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "ay",
@@ -1023,7 +1047,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.2
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "russo",
@@ -1063,7 +1088,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 12.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "up2yoga",
@@ -1104,7 +1130,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "kedr",
@@ -1152,7 +1179,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 21.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "domik-v-sadu",
@@ -1200,7 +1228,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.4
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "bestiary",
@@ -1247,7 +1276,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "accent-jewelry-workshop",
@@ -1295,7 +1325,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.5
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "morning-coffee-club",
@@ -1330,7 +1361,8 @@ window.SECRET_MOSCOW_PLACES = [
         "note": "локация меняется, время примерное до центра"
       },
       "metro": []
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "yahroma-tobogan",
@@ -1369,7 +1401,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 4
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "nosugar-gruzinsky-val",
@@ -1412,7 +1445,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.2
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "morpheus-theatre",
@@ -1456,7 +1490,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.8
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "grande-bibliotheca",
@@ -1499,7 +1534,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.3
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "yudashkin-sad",
@@ -1546,7 +1582,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "dvor-kultur",
@@ -1593,7 +1630,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.8
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "alaska-gastrobar",
@@ -1640,7 +1678,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.6
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "ryabchik-cafe",
@@ -1688,7 +1727,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.9
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "photoppix-booth",
@@ -1735,7 +1775,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 0.7
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "7korpus-art-cluster",
@@ -1781,7 +1822,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "ryabushinsky-mansion-museum",
@@ -1827,7 +1869,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "ekler-cafeteria",
@@ -1874,7 +1917,8 @@ window.SECRET_MOSCOW_PLACES = [
           "distanceKm": 1.1
         }
       ]
-    }
+    },
+    "city": "Москва"
   },
   {
     "id": "officially-offline",
@@ -1908,6 +1952,51 @@ window.SECRET_MOSCOW_PLACES = [
         "note": "локация меняется, время примерное до центра"
       },
       "metro": []
+    },
+    "city": "Москва"
+  },
+  {
+    "id": "buterbrodnaya-spb",
+    "title": "Бутербродная",
+    "category": "рестораны и кафе",
+    "city": "Санкт-Петербург",
+    "address": "Каменноостровский проспект, 10Б, Санкт-Петербург",
+    "coords": [
+      59.9587008,
+      30.3160951
+    ],
+    "description": "Петербургская бутербродная с авторскими бутербродами, кофе и камерным городским настроением.",
+    "links": {
+      "instagram": "https://www.instagram.com/buterbrodnaya?igsh=MTNwNW1yYjd4a3dr",
+      "site": "https://buterbrodnaya.com/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DVY1QMFCBY2/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "бутерброды",
+      "кофе",
+      "Петербург"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 710,
+        "minutes": 480,
+        "note": "примерно из Москвы, без учета остановок"
+      },
+      "metro": [
+        {
+          "name": "Горьковская",
+          "distanceKm": 0.4
+        },
+        {
+          "name": "Петроградская",
+          "distanceKm": 1.3
+        }
+      ]
     }
   }
 ];
