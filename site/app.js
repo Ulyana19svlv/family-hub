@@ -282,8 +282,8 @@ function renderMediaContent(place, variant = "row") {
 
 function renderRowMedia(place) {
   const media = getPlaceMedia(place);
-  const thumbnailClass = media.thumbnail ? " has-thumbnail" : "";
-  return `<span class="row-media${thumbnailClass}">${renderMediaContent(place, "row")}</span>`;
+  if (!media.thumbnail) return "";
+  return `<span class="row-media has-thumbnail">${renderMediaContent(place, "row")}</span>`;
 }
 
 function renderDetailsMedia(place) {
@@ -361,15 +361,17 @@ function renderList() {
     const active = place.id === state.selectedId ? "active" : "";
     const meta = getCategoryMeta(place.category);
     const city = getPlaceCity(place);
+    const media = getPlaceMedia(place);
+    const mediaClass = media.thumbnail ? "has-row-media" : "no-row-media";
     const social = [
       place.links.instagram && "Instagram",
       place.links.telegram && "Telegram",
       place.links.site && "сайт"
     ].filter(Boolean).slice(0, 2).join(" · ");
     return `
-      <button class="place-row ${active}" data-id="${place.id}" data-accent="${meta.accent}">
+      <button class="place-row ${active} ${mediaClass}" data-id="${place.id}" data-accent="${meta.accent}">
         ${renderRowMedia(place)}
-        <span class="row-kicker"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span>${place.category}${renderVisitBadge(place)}</span>
+        <span class="row-kicker"><i data-lucide="${meta.icon}"></i><span class="city-badge">${city}</span><span class="category-name">${place.category}</span>${renderVisitBadge(place)}</span>
         <span class="row-title">${place.title}</span>
         <span class="row-description">${place.description}</span>
         <span class="row-access">

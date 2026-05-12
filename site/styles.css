@@ -1565,6 +1565,15 @@ h1 {
   box-shadow: none;
 }
 
+.place-row.no-row-media {
+  grid-template-areas:
+    "kicker"
+    "title"
+    "access";
+  align-content: center;
+  min-height: 112px;
+}
+
 .place-row:hover {
   border-color: #cfcfcf;
   transform: none;
@@ -1627,7 +1636,7 @@ h1 {
   text-overflow: clip;
 }
 
-.place-row .row-kicker span:last-child {
+.place-row .category-name {
   display: -webkit-box;
   min-width: 0;
   overflow: hidden;
