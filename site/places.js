@@ -2046,6 +2046,150 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "polden-cafe",
+    "title": "Полдень",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Чистопрудный бульвар, 23/2, Москва",
+    "coords": [
+      55.760522,
+      37.647219
+    ],
+    "description": "Кафе на Чистопрудном бульваре для кофе, завтраков и спокойной городской паузы в районе Чистых прудов.",
+    "links": {
+      "instagram": "https://www.instagram.com/poldencafe?igsh=enZidDE3YThtZ2hz",
+      "telegram": "https://t.me/poldentyt"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DLkZeKhMqob/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кофе",
+      "завтраки",
+      "Чистые пруды"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 8.2,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Чкаловская",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Чистые пруды",
+          "distanceKm": 0.8
+        },
+        {
+          "name": "Курская",
+          "distanceKm": 0.8
+        }
+      ]
+    }
+  },
+  {
+    "id": "antipa-cafe",
+    "title": "Antipa Cafe",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Колымажный переулок, 8/4с7, Москва",
+    "coords": [
+      55.7477508,
+      37.6056152
+    ],
+    "description": "Кафе-трапезная в тихом переулке рядом с Волхонкой: камерное место для кофе, еды и спокойной остановки в центре.",
+    "links": {
+      "instagram": "https://www.instagram.com/antipa_cafe?igsh=MTFhODlnYXloZGtxNg==",
+      "site": "https://taplink.cc/antipa"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DUaOVTOCMVN/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кофе",
+      "тихий центр",
+      "трапезная"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 4.4,
+        "minutes": 15,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Кропоткинская",
+          "distanceKm": 0.3
+        },
+        {
+          "name": "Боровицкая",
+          "distanceKm": 0.4
+        },
+        {
+          "name": "Библиотека имени Ленина",
+          "distanceKm": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "all-saints-cafe-santo-giovanni",
+    "title": "All Saints Cafe",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "улица Петровка, 34с1, Москва",
+    "coords": [
+      55.7687224,
+      37.6132694
+    ],
+    "description": "Кафе на Петровке; веранда называется «Санто Джованни» и живет как один из проектов All Saints.",
+    "links": {
+      "instagram": "https://www.instagram.com/allsaints_cafe?igsh=NTU4bDZwNGt4dHZi",
+      "site": "https://cafesanta.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DYAzLOyspZO/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кофе",
+      "Петровка",
+      "Санто Джованни"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 6.3,
+        "minutes": 20,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Цветной бульвар",
+          "distanceKm": 0.4
+        },
+        {
+          "name": "Трубная",
+          "distanceKm": 0.4
+        },
+        {
+          "name": "Чеховская",
+          "distanceKm": 0.5
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
