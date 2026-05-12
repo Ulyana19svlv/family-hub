@@ -172,7 +172,7 @@ function renderVisitJournal(place) {
       </div>
       <label class="impression-field">
         <span>Впечатления</span>
-        <textarea id="visitComment" rows="4" placeholder="Что запомнилось, хочется ли повторить, с кем лучше идти">${escapeHtml(note.comment)}</textarea>
+        <textarea id="visitComment" rows="2" placeholder="Что запомнилось, хочется ли повторить, с кем лучше идти">${escapeHtml(note.comment)}</textarea>
       </label>
     </section>
   `;
