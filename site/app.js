@@ -252,9 +252,14 @@ function renderMediaContent(place, variant = "row") {
   }
 
   if (media.type === "instagram" && media.url) {
-    const embedUrl = getInstagramEmbedUrl(media.url);
-    if (variant === "details" && embedUrl) {
-      return `<iframe class="instagram-embed" src="${embedUrl}" title="${place.title} в Instagram" loading="lazy" allowtransparency="true" allowfullscreen></iframe>`;
+    if (variant === "details") {
+      const preview = media.thumbnail
+        ? `<img src="${media.thumbnail}" alt="${media.alt || place.title}" loading="lazy" />`
+        : `<span class="${labelClass}"><i data-lucide="instagram"></i><span>${media.label || "Instagram / Reels"}</span></span>`;
+      return `<a class="details-media-link" href="${media.url}" target="_blank" rel="noreferrer" aria-label="Открыть ${place.title} в Instagram">
+        ${preview}
+        <span class="media-open-label"><i data-lucide="external-link"></i>Открыть</span>
+      </a>`;
     }
     return `<span class="${labelClass}"><i data-lucide="instagram"></i><span>${media.label || "Instagram / Reels"}</span></span>`;
   }
@@ -282,7 +287,9 @@ function renderRowMedia(place) {
 }
 
 function renderDetailsMedia(place) {
-  return `<div class="details-media">${renderMediaContent(place, "details")}</div>`;
+  const media = getPlaceMedia(place);
+  const thumbnailClass = media.thumbnail ? " has-thumbnail" : "";
+  return `<div class="details-media${thumbnailClass}">${renderMediaContent(place, "details")}</div>`;
 }
 
 function formatDrive(access) {
