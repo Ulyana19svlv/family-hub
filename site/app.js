@@ -416,8 +416,10 @@ function renderDetails() {
     </div>
     <h2 id="detailsTitle">${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
-    ${renderVisitJournal(place)}
-    ${renderDetailsMedia(place)}
+    <div class="details-feature">
+      ${renderVisitJournal(place)}
+      ${renderDetailsMedia(place)}
+    </div>
     <div class="access-strip">
       <div>
         <span><i data-lucide="car"></i>Из дома</span>

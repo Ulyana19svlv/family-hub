@@ -391,7 +391,7 @@ body.mobile-map-open .mobile-view-toggle {
 .details-media video {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .instagram-embed {
@@ -745,6 +745,14 @@ body.mobile-map-open .mobile-view-toggle {
   font-weight: 800;
 }
 
+.details-feature {
+  display: grid;
+  grid-template-columns: minmax(190px, 230px) minmax(190px, 220px);
+  align-items: start;
+  gap: 18px;
+  margin: 10px 0 18px;
+}
+
 .details-media-label svg {
   width: 22px;
   height: 22px;
@@ -811,11 +819,11 @@ body.mobile-map-open .mobile-view-toggle {
 
 .visit-journal {
   display: grid;
-  grid-template-columns: minmax(116px, auto) minmax(220px, 0.9fr) minmax(260px, 1.1fr);
-  align-items: center;
-  gap: 8px;
-  margin: 8px 0 10px;
-  padding: 8px 10px;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: 10px;
+  margin: 0;
+  padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: #fffaf1;
@@ -824,7 +832,7 @@ body.mobile-map-open .mobile-view-toggle {
 .visit-journal-head {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 8px;
   min-width: 0;
 }
@@ -839,7 +847,7 @@ body.mobile-map-open .mobile-view-toggle {
 
 .status-toggle {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 6px;
 }
 
@@ -872,24 +880,24 @@ body.mobile-map-open .mobile-view-toggle {
 
 .impression-field {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
+  grid-template-columns: 1fr;
+  align-items: stretch;
   gap: 8px;
   min-width: 0;
 }
 
 .impression-field textarea {
   width: 100%;
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
+  height: 78px;
+  min-height: 78px;
+  max-height: 78px;
   resize: vertical;
-  padding: 7px 10px;
+  padding: 10px;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: 14px;
   background: #ffffff;
   color: var(--color-text);
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .access-strip div {
@@ -1634,13 +1642,15 @@ h1 {
 }
 
 .address {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   color: var(--color-muted);
   font-size: 14px;
 }
 
 .details-media {
-  height: clamp(132px, 17vh, 190px);
+  width: min(100%, 220px);
+  aspect-ratio: 9 / 16;
+  height: auto;
   min-height: 0;
   border: 0;
   border-radius: 16px;
@@ -1686,10 +1696,10 @@ h1 {
 .visit-journal {
   border-radius: 16px;
   background: #fff8e5;
-  grid-template-columns: minmax(116px, auto) minmax(220px, 0.9fr) minmax(260px, 1.1fr);
-  gap: 8px;
-  margin: 8px 0 10px;
-  padding: 8px 10px;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 12px;
 }
 
 .visit-journal-head > span:first-child,
@@ -1704,9 +1714,9 @@ h1 {
 }
 
 .impression-field textarea {
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
+  height: 78px;
+  min-height: 78px;
+  max-height: 78px;
 }
 
 .visit-plan {
@@ -1773,6 +1783,10 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  .details-feature {
+    grid-template-columns: 1fr;
+  }
+
   .visit-journal {
     grid-template-columns: 1fr;
     align-items: stretch;
@@ -1916,8 +1930,11 @@ h1 {
   }
 
   .details-media {
-    height: clamp(160px, 32vh, 240px);
+    width: min(100%, 250px);
+    aspect-ratio: 9 / 16;
+    height: auto;
     min-height: 0;
     max-height: none;
+    justify-self: center;
   }
 }
