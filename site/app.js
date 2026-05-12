@@ -419,17 +419,17 @@ function renderDetails() {
     <div class="details-feature">
       ${renderVisitJournal(place)}
       ${renderDetailsMedia(place)}
-    </div>
-    <div class="access-strip">
-      <div>
-        <span><i data-lucide="car"></i>Из дома</span>
-        <strong>${formatDrive(place.access)}</strong>
-        <small>${place.access?.fromHome?.note || "примерный ориентир"}</small>
-      </div>
-      <div>
-        <span><i data-lucide="train-front"></i>Метро рядом</span>
-        <strong>${place.access?.metro?.[0]?.name || "уточнить"}</strong>
-        <small>${formatMetro(place.access)}</small>
+      <div class="access-strip">
+        <div>
+          <span><i data-lucide="car"></i>Из дома</span>
+          <strong>${formatDrive(place.access)}</strong>
+          <small>${place.access?.fromHome?.note || "примерный ориентир"}</small>
+        </div>
+        <div>
+          <span><i data-lucide="train-front"></i>Метро рядом</span>
+          <strong>${place.access?.metro?.[0]?.name || "уточнить"}</strong>
+          <small>${formatMetro(place.access)}</small>
+        </div>
       </div>
     </div>
     <p class="details-lead">${place.description}</p>
