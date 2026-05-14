@@ -2223,6 +2223,54 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "blinchik-taganka",
+    "title": "Блинчик на Таганке",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Воронцовская улица, 8с1, 1 этаж, Москва",
+    "coords": [
+      55.74,
+      37.655
+    ],
+    "description": "Небольшая блинная на Таганке: блины, простая еда и быстрый уютный перекус рядом с метро.",
+    "links": {
+      "instagram": "https://www.instagram.com/blinchiktaganka",
+      "telegram": "https://t.me/blinchiktaganka"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DXI9UXbDFW-/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "блины",
+      "Таганка",
+      "быстрый перекус"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 8,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Марксистская",
+          "distanceKm": 0.2
+        },
+        {
+          "name": "Таганская",
+          "distanceKm": 0.2
+        },
+        {
+          "name": "Крестьянская Застава",
+          "distanceKm": 1.1
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
