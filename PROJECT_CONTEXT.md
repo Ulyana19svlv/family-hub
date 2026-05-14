@@ -19,7 +19,7 @@
 - Основная ветка: `main`
 - Публичная главная: `https://ulyana19svlv.github.io/family-hub/`
 - Публичная база мест: `https://ulyana19svlv.github.io/family-hub/site/`
-- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-33`
+- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-34`
 
 Важно: после изменений в HTML/CSS/JS обычно повышать `?v=calm-N`, чтобы браузер и телефон не держали старый кэш.
 
@@ -37,9 +37,9 @@
 
 ## Текущий статус базы мест
 
-На 13 мая 2026:
+На 14 мая 2026:
 
-- Всего мест: `53`.
+- Всего мест: `54`.
 - Города: `Москва`, `Санкт-Петербург`, `Тульская область`.
 - У всех мест должно быть поле `city`.
 - По умолчанию открывается город `Москва`.
@@ -112,14 +112,15 @@
 
 Последнее добавленное место:
 
-- `Блинчик на Таганке`
+- `На даче шефа`
 - Город: `Москва`
 - Категория: `рестораны и кафе`
-- Адрес: `Воронцовская улица, 8с1, 1 этаж, Москва`
-- Координаты: `[55.74, 37.655]`
-- Instagram: `https://www.instagram.com/blinchiktaganka`
-- Telegram: `https://t.me/blinchiktaganka`
-- Reels: `https://www.instagram.com/reel/DXI9UXbDFW-/`
+- Адрес: `Ожигово, Москва`
+- Координаты: `[55.4618196, 36.8860962]`
+- Instagram: `https://www.instagram.com/nadachechefa?igsh=NnlieGJmbGhpaHJs`
+- Telegram: `https://t.me/nadacheshefa`
+- Reels: `https://www.instagram.com/reel/DQ14usMiJgH/`
+- Важно: загородный chef's table Дмитрия Парикова, средний чек около `25000`, телефон `+7 903 117-66-78`.
 
 ## Дизайн-направление
 

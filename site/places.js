@@ -2271,6 +2271,41 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "na-dache-shefa",
+    "title": "На даче шефа",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Ожигово, Москва",
+    "coords": [
+      55.4618196,
+      36.8860962
+    ],
+    "description": "Загородный гастрономический проект шеф-повара Дмитрия Парикова в формате chef's table. Средний чек около 25 000 ₽, телефон: +7 903 117-66-78.",
+    "links": {
+      "instagram": "https://www.instagram.com/nadachechefa?igsh=NnlieGJmbGhpaHJs",
+      "telegram": "https://t.me/nadacheshefa"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DQ14usMiJgH/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "chef's table",
+      "загородное",
+      "средний чек 25000"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 63,
+        "minutes": 90,
+        "note": "примерно из Москвы, загородная поездка"
+      },
+      "metro": []
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
