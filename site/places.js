@@ -2694,6 +2694,52 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "chae-tea-club-vdnh",
+    "title": "Клуб чайной культуры «ЧаЕ»",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "ВДНХ, проспект Мира, 119с35, Москва",
+    "coords": [
+      55.838400878207,
+      37.614328231854
+    ],
+    "description": "Атмосферная чайная на ВДНХ: отборный чай из Китая, чайные церемонии от 700 ₽ с человека и традиционная посуда.",
+    "links": {
+      "site": "https://vdnh.ru/places/662/"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://s3.vdnh.ru/vdnhru/cache/2026/02/16/0328ed019d326f4e72d03a4e37b03a1a5eac2fb3.jpg/4fba22632f0b100970a68e70a338bf12.webp",
+      "alt": "Клуб чайной культуры ЧаЕ на ВДНХ"
+    },
+    "tags": [
+      "чай",
+      "чайная церемония",
+      "ВДНХ"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 14.9,
+        "minutes": 35,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "ВДНХ",
+          "distanceKm": 1.5
+        },
+        {
+          "name": "Ботанический сад",
+          "distanceKm": 1.6
+        },
+        {
+          "name": "Бутырская",
+          "distanceKm": 2.6
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
