@@ -2401,6 +2401,41 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "aumeet",
+    "title": "Ау / Aumeet",
+    "category": "события",
+    "city": "Москва",
+    "address": "Москва, локация зависит от встречи",
+    "coords": [
+      55.7558,
+      37.6176
+    ],
+    "description": "Сервис живых знакомств без свайпов: подбирает небольшую компанию по интересам и организует встречу в ресторане, баре или кофейне.",
+    "links": {
+      "instagram": "https://www.instagram.com/aumeet_ru?igsh=MWxtZm5wZXgyY295Zw==",
+      "telegram": "https://t.me/aumeetru",
+      "site": "https://aumeet.ru/"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://aumeet.ru/photos/uzhin.webp",
+      "alt": "Встреча Aumeet за ужином"
+    },
+    "tags": [
+      "знакомства",
+      "встречи",
+      "комьюнити"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.1,
+        "minutes": 25,
+        "note": "локация меняется, время примерное до центра"
+      },
+      "metro": []
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
