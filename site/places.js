@@ -2648,6 +2648,52 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "vdnh-green-labyrinth",
+    "title": "Зелёный лабиринт на ВДНХ",
+    "category": "парки и прогулки",
+    "city": "Москва",
+    "address": "ВДНХ, Зелёный лабиринт, Москва",
+    "coords": [
+      55.83576316467,
+      37.614295355332
+    ],
+    "description": "Природный уголок на ВДНХ для неспешной прогулки среди живой изгороди, фотографий и короткой зеленой паузы. Вход свободный.",
+    "links": {
+      "site": "https://vdnh.ru/places/labirint/?ysclid=mpcdpmrygl491824751"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://s3.vdnh.ru/vdnhru/cache/2025/02/26/9d9c7d96355f2d1339347c57a2318c388fa6d4ba.jpg/72a46bc59e564585a77684aa70f08f75.webp",
+      "alt": "Зелёный лабиринт на ВДНХ"
+    },
+    "tags": [
+      "ВДНХ",
+      "прогулка",
+      "вход свободный"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 14.8,
+        "minutes": 35,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "ВДНХ",
+          "distanceKm": 1.1
+        },
+        {
+          "name": "Ботанический сад",
+          "distanceKm": 1.7
+        },
+        {
+          "name": "Алексеевская",
+          "distanceKm": 2.3
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
